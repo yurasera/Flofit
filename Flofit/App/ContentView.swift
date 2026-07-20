@@ -15,14 +15,11 @@ struct ContentView: View {
             Text("Prioritize Recovery")
                 .font(.title)
                 .fontWeight(.bold)
+                .foregroundStyle(.black)
 
             Text("Readiness score based on your feeling only.")
                 .font(.body)
-                .foregroundStyle(.secondary)
-            
-            Text("Mind & Body Check-in")
-                .font(.title3)
-                .fontWeight(.bold)
+                .foregroundStyle(.black)
             
             FeelingTodaySheet(feelingRating: $feelingRating, isPresented: $isShowingFeelingSheet)
                 .background(Color.clear)
@@ -32,10 +29,11 @@ struct ContentView: View {
             
             Text("This form will affect your readiness score")
                 .font(.body)
-                .foregroundStyle(Color.DarkModeTextColorSecondary)
+                .foregroundStyle(.black)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .padding()
+        .background(.white)
     }
 }
 

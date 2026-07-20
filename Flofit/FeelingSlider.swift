@@ -43,11 +43,13 @@ struct FeelingSlider: View {
     let trackExtension: CGFloat = 20
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 32){
+        VStack(alignment: .center, spacing: 8){
             // 1. Judul
             Text("How do you feel today?")
-                .font(.BodySemiBold)
-                .foregroundStyle(Color.DarkModeTextColorPrimary)
+                .font(.title3)
+                .foregroundStyle(.black)
+                .fontWeight(.bold)
+                .padding(20)
             
             // 2. Detail Deskripsi Perasaan (Dipindah ke atas)
             VStack(alignment: .center, spacing: 12) {
@@ -57,24 +59,23 @@ struct FeelingSlider: View {
                         Text(feelings[rating-1].feeling)
                     }
                     .font(.TitleBold)
-                    .foregroundStyle(Color.DarkModeTextColorPrimary)
+                    .foregroundStyle(.black)
                     
                     Text(feelings[rating-1].description)
                         .font(.BodySemiBold)
-                        .foregroundStyle(Color.DarkModeTextColorPrimary)
+                        .foregroundStyle(.black)
                     
                     Text(feelings[rating-1].signs)
                         .font(.FootnoteSemiBold)
-                        .foregroundStyle(Color.DarkModeTextColorSecondary)
+                        .foregroundStyle(.black)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 16)
                 } else {
                     Text("Slide to choose your feeling")
                         .font(.BodySemiBold)
-                        .foregroundColor(.DarkModeTextColorPrimary)
+                        .foregroundColor(.black)
                 }
             }
-            .frame(minHeight: 120)
             .frame(maxWidth: .infinity, alignment: .center)
             
             // 3. Slider (Dipindah ke bawah)
@@ -131,7 +132,6 @@ struct FeelingSlider: View {
                                     }
                             )
                     }
-                    .frame(height: thumbSize)
                     .onChange(of: feelingRating, initial: true) { _, newValue in
                         if let currentRating = newValue, !isDragging {
                             sliderProgress = CGFloat(currentRating - 1) / CGFloat(totalSteps - 1)
