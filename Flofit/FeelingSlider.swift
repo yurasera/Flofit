@@ -81,7 +81,7 @@ struct FeelingSlider: View {
             // 3. Slider (Dipindah ke bawah)
             HStack(alignment: .center, spacing: 12) {
                 Image(systemName: AppIcon.battery0percent)
-                    .foregroundStyle(Color.DarkModeTextColorPrimary)
+                    .foregroundStyle(.black)
                 
                 GeometryReader { geometry in
                     let width = geometry.size.width
@@ -142,7 +142,7 @@ struct FeelingSlider: View {
                 .padding(.horizontal, trackExtension)
                 
                 Image(systemName: AppIcon.battery100percent)
-                    .foregroundStyle(Color.DarkModeTextColorPrimary)
+                    .foregroundStyle(.black)
             }
         }
         .frame(maxWidth: .infinity)
