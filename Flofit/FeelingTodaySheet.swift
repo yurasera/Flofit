@@ -2,9 +2,8 @@ import SwiftUI
 
 struct FeelingTodaySheet: View {
     @Binding var feelingRating: Int?
+    @Binding var isPresented: Bool
     @State private var localRating: Int?
-    
-    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
@@ -16,7 +15,7 @@ struct FeelingTodaySheet: View {
                 
                 Button(action: {
                     feelingRating = localRating
-                    dismiss()
+                    isPresented = false
                 }) {
                     Text("Save Feeling")
                         .font(.BodySemiBold)
@@ -41,5 +40,6 @@ struct FeelingTodaySheet: View {
 
 #Preview {
     @Previewable @State var previewRating: Int?
-    FeelingTodaySheet(feelingRating: $previewRating)
+    @Previewable @State var previewPresented: Bool = true
+    FeelingTodaySheet(feelingRating: $previewRating, isPresented: $previewPresented)
 }

@@ -3,6 +3,7 @@ import SwiftUI
 struct RateFeeling: View {
     @State private var isClicked: Bool = false
     @Binding var feelingRating: Int?
+    @Binding var showFeelingSheet: Bool
     
     // Computed Property mendeteksi apakah data final sudah tersimpan atau belum
     var isLogged: Bool {
@@ -51,6 +52,7 @@ struct RateFeeling: View {
             withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
                 isClicked.toggle()
             }
+            showFeelingSheet.toggle()
         }) {
             HStack {
                 Text(isLogged ? "You are feeling" : "How are you feeling today?")
@@ -88,18 +90,15 @@ struct RateFeeling: View {
             )
         )
         .animation(.easeInOut(duration: 0.3), value: isClicked)
-        .sheet(isPresented: $isClicked){
-            FeelingTodaySheet(feelingRating: $feelingRating)
-                .presentationDetents([.height(500)])
-                .presentationDragIndicator(.visible)
-        }
+        // Sheet presentation moved to parent view (`ContentView`)
     }
 }
 
 #Preview {
     @Previewable @State var mockFeelingRating: Int? = nil
-    
-    RateFeeling(feelingRating: $mockFeelingRating)
+    @Previewable @State var mockShow: Bool = false
+
+    RateFeeling(feelingRating: $mockFeelingRating, showFeelingSheet: $mockShow)
     
 }
 
