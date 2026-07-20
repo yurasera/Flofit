@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var feelingRating: Int? = nil
-    @State private var isShowingFeelingSheet: Bool = false
+    @State private var isShowingFeelingSheet: Bool = true
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Prioritize Recovery")
@@ -23,6 +23,11 @@ struct ContentView: View {
             Text("Mind & Body Check-in")
                 .font(.title3)
                 .fontWeight(.bold)
+            
+            FeelingTodaySheet(feelingRating: $feelingRating, isPresented: $isShowingFeelingSheet)
+                .background(Color.clear)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .zIndex(1)
             RateFeeling(feelingRating: $feelingRating, showFeelingSheet: $isShowingFeelingSheet)
             
             Text("This form will affect your readiness score")
@@ -31,13 +36,6 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .padding()
-        // Inline presentation of FeelingTodaySheet instead of .sheet
-        if isShowingFeelingSheet {
-            FeelingTodaySheet(feelingRating: $feelingRating, isPresented: $isShowingFeelingSheet)
-                .background(Color.clear)
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-                .zIndex(1)
-        }
     }
 }
 
